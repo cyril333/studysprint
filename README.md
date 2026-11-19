@@ -57,7 +57,7 @@ A full-stack web application designed to help students manage study sessions mor
 
 ### 1. Clone the Repository
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/cyril333/studysprint.git
 cd studysprint
 ```
 
@@ -90,7 +90,7 @@ This creates a default admin account:
 ```bash
 npm start
 ```
-The API will run on `http://localhost:5000`
+*(Or `node index.js`). The API will run on `http://127.0.0.1:5000` (loopback avoids campus firewall warnings).*
 
 ### 6. Install Frontend Dependencies
 Open a **new terminal**:
