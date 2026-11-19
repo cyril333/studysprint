@@ -6,6 +6,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Landing from './pages/Landing';
 import StudentDashboard from './pages/StudentDashboard';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminUsers from './pages/AdminUsers';
@@ -27,7 +28,10 @@ function PublicRoute({ children }) {
 function AppRoutes() {
   return (
     <Routes>
-      {/* Public Routes */}
+      {/* Public Landing Page */}
+      <Route path="/" element={<Landing />} />
+
+      {/* Public Auth Routes */}
       <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
 
