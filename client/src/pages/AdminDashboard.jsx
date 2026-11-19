@@ -48,7 +48,7 @@ export default function AdminDashboard() {
         {/* Welcome Section */}
         <div className="welcome-section">
           <div className="welcome-text">
-            <h1>Admin Dashboard 🛡️</h1>
+            <h1>Admin Dashboard</h1>
             <p>Welcome, {user?.fullName}. Here's your system overview.</p>
           </div>
         </div>

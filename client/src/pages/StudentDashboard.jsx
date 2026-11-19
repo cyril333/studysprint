@@ -46,7 +46,7 @@ export default function StudentDashboard() {
         {/* Welcome Section */}
         <div className="welcome-section">
           <div className="welcome-text">
-            <h1>Welcome back, {user?.fullName?.split(' ')[0]}! 👋</h1>
+            <h1>Welcome back, {user?.fullName?.split(' ')[0]}</h1>
             <p>Ready to supercharge your study session? Let's get started.</p>
           </div>
         </div>

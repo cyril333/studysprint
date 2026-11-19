@@ -105,9 +105,9 @@ export default function Register() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-header">
-          <span className="auth-logo">⚡</span>
+          <span className="auth-logo">SS</span>
           <h1>StudySprint</h1>
-          <p>Create your account</p>
+          <p>Create your student account</p>
         </div>
 
         {serverError && <div className="alert alert-error">{serverError}</div>}

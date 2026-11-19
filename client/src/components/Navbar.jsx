@@ -22,7 +22,7 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-brand">
         <Link to={isAdmin ? '/admin/dashboard' : '/student/dashboard'}>
-          <span className="brand-icon">⚡</span>
+          <span className="brand-icon">SS</span>
           <span className="brand-text">StudySprint</span>
         </Link>
       </div>

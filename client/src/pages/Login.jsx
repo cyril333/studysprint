@@ -51,9 +51,9 @@ export default function Login() {
     <div className="auth-page">
       <div className="auth-card">
         <div className="auth-header">
-          <span className="auth-logo">⚡</span>
+          <span className="auth-logo">SS</span>
           <h1>StudySprint</h1>
-          <p>Welcome back! Sign in to continue</p>
+          <p>Welcome back. Sign in to continue</p>
         </div>
 
         {error && <div className="alert alert-error">{error}</div>}

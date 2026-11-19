@@ -1,4 +1,4 @@
-# ⚡ StudySprint
+# StudySprint
 
 **An AI-Assisted Study Planner and Quiz Generator**
 
@@ -10,16 +10,16 @@ A full-stack web application designed to help students manage study sessions mor
 
 ---
 
-## 📋 Features (Project Increment 1)
+## Features (Project Increment 1)
 
-### ✅ User Account Creation
+### User Account Creation
 - Register with full name, email, username, and password
 - Real-time field validation with inline error messages
 - Duplicate account prevention (email & username)
 - Secure password hashing with **bcrypt** (10 salt rounds)
 - Default **Student** role assignment on registration
 
-### ✅ User Login & Logout
+### User Login & Logout
 - Login with email or username + password
 - JWT-based authentication with 24-hour token expiration
 - Proper error messages for invalid credentials
@@ -27,7 +27,7 @@ A full-stack web application designed to help students manage study sessions mor
 - Logout clears session and redirects to login
 - Protected routes prevent unauthorized access
 
-### ✅ Role-Based Dashboards
+### Role-Based Dashboards
 - **Student Dashboard**: Welcome greeting, study streak, quiz stats, quick actions (Upload Notes, Take Quiz, View Schedule)
 - **Admin Dashboard**: System overview with total/active/suspended user stats, recent registrations table, user management link
 - **Admin User Management**: View all users, search/filter, suspend/activate accounts
@@ -35,7 +35,7 @@ A full-stack web application designed to help students manage study sessions mor
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer       | Technology                          |
 | ----------- | ----------------------------------- |
@@ -48,7 +48,7 @@ A full-stack web application designed to help students manage study sessions mor
 
 ---
 
-## 🚀 Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 - **Node.js** (v18 or later)
@@ -107,7 +107,7 @@ The app will open at `http://localhost:5173`
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 studysprint/
@@ -148,7 +148,7 @@ studysprint/
 
 ---
 
-## 🔐 API Endpoints
+## API Endpoints
 
 | Method | Endpoint                  | Auth Required | Role  | Description              |
 | ------ | ------------------------- | ------------- | ----- | ------------------------ |
@@ -163,7 +163,7 @@ studysprint/
 
 ---
 
-## 👤 Test Accounts
+## Test Accounts
 
 | Role    | Email                 | Username | Password  |
 | ------- | --------------------- | -------- | --------- |
@@ -172,6 +172,6 @@ studysprint/
 
 ---
 
-## 📄 License
+## License
 
 This project is developed for academic purposes as part of the IT342 course at CIT-U.

@@ -56,7 +56,7 @@ export default function Landing() {
         <div className="land-container land-header-inner">
           <div className="land-brand">
             <Link to="/">
-              <span className="land-brand-badge">⚡</span>
+              <span className="land-brand-badge">SS</span>
               <span className="land-brand-text">StudySprint</span>
             </Link>
           </div>
@@ -163,7 +163,7 @@ export default function Landing() {
                   </div>
                 </div>
                 <div className="land-preview-footer">
-                  <span className="land-gen-badge">⚡ Generated in 14.2s from uploaded notes</span>
+                  <span className="land-gen-badge">[AI Engine] Generated in 14.2s from notes</span>
                   <span className="land-preview-cta">Next Question →</span>
                 </div>
               </div>
@@ -228,10 +228,10 @@ export default function Landing() {
               <div className="land-inset-box">
                 <div className="land-inset-header">HIERARCHY // SUBJECTS &amp; TOPICS</div>
                 <div className="land-tree-mock">
-                  <div className="tree-node active">📁 Systems Integration &amp; Architecture 1</div>
-                  <div className="tree-node sub">├─ 📄 Module 1: Software Requirements (SRS)</div>
-                  <div className="tree-node sub">├─ 📄 Module 2: REST APIs &amp; JWT Security</div>
-                  <div className="tree-node sub">└─ 📄 Module 3: Microservices vs Monoliths</div>
+                  <div className="tree-node active">[SYS] Systems Integration &amp; Architecture 1</div>
+                  <div className="tree-node sub">├─ [MOD 1] Software Requirements (SRS)</div>
+                  <div className="tree-node sub">├─ [MOD 2] REST APIs &amp; JWT Security</div>
+                  <div className="tree-node sub">└─ [MOD 3] Microservices vs Monoliths</div>
                 </div>
               </div>
             </div>
@@ -465,7 +465,7 @@ export default function Landing() {
         <div className="land-container land-footer-grid">
           <div className="footer-col brand-col">
             <div className="footer-brand">
-              <span className="land-brand-badge">⚡</span>
+              <span className="land-brand-badge">SS</span>
               <span className="land-brand-text">StudySprint</span>
             </div>
             <p className="footer-desc">
