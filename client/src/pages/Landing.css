@@ -1,0 +1,1123 @@
+/* =============================================================
+   StudySprint - Landing Page Theme
+   Warm Parchment Aesthetic: #ede3d1, Espresso: #3b2a1a, Accent: #92400e
+   Sharp 0px Geometry, Display: Host Grotesk, Body: IBM Plex Mono
+   ============================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --land-bg: #ede3d1;
+  --land-surface: #e4dac9;
+  --land-text: #000000;
+  --land-muted: #373737;
+  --land-accent: #92400e;
+  --land-action: #3b2a1a;
+  --land-action-label: #fcfcfd;
+  --land-hairline: #cec5b3;
+  --land-inverse-bg: #141314;
+  --land-inverse-text: #fcfcfd;
+  --land-font-display: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --land-font-body: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.landing-root {
+  background-color: var(--land-bg);
+  color: var(--land-text);
+  font-family: var(--land-font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.landing-root * {
+  box-sizing: border-box;
+  border-radius: 0px !important; /* Fixed Rule: Sharp 0px corners everywhere */
+}
+
+.land-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* ── Typography Roles ──────────────────────────────────────── */
+.landing-root h1,
+.landing-root h2,
+.landing-root h3,
+.landing-root h4 {
+  font-family: var(--land-font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--land-text);
+  margin-top: 0;
+  letter-spacing: -0.02em;
+}
+
+.landing-root p {
+  color: var(--land-muted);
+}
+
+.land-eyebrow {
+  display: inline-block;
+  font-family: var(--land-font-body);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--land-accent);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+/* ── Buttons (Sharp Square 0px) ────────────────────────────── */
+.land-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--land-action);
+  color: var(--land-action-label) !important;
+  padding: 0.75rem 1.4rem;
+  font-family: var(--land-font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--land-action);
+  cursor: pointer;
+  transition: opacity 0.15s ease, transform 0.1s ease;
+}
+
+.land-btn-primary:hover {
+  opacity: 0.92;
+  text-decoration: none;
+}
+
+.land-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--land-action) !important;
+  padding: 0.75rem 1.4rem;
+  font-family: var(--land-font-body);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--land-action);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.land-btn-secondary:hover {
+  background-color: var(--land-surface);
+  text-decoration: none;
+}
+
+.land-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  color: var(--land-action) !important;
+  font-family: var(--land-font-body);
+  font-size: 0.95rem;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+}
+
+.land-btn-ghost:hover {
+  text-decoration: underline;
+}
+
+.land-btn-lg {
+  padding: 0.9rem 1.8rem;
+  font-size: 1rem;
+}
+
+.land-text-link {
+  color: var(--land-accent) !important;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.8rem;
+}
+
+.land-text-link:hover {
+  text-decoration: underline;
+}
+
+/* ── 1. Site Header ────────────────────────────────────────── */
+.land-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--land-bg);
+  border-bottom: 1px solid var(--land-hairline);
+  height: 72px;
+  display: flex;
+  align-items: center;
+}
+
+.land-header-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.land-brand a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.land-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--land-action);
+  color: var(--land-action-label);
+  width: 32px;
+  height: 32px;
+  font-size: 1rem;
+}
+
+.land-brand-text {
+  font-family: var(--land-font-display);
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--land-text);
+  letter-spacing: -0.01em;
+}
+
+.land-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.land-nav a {
+  color: var(--land-muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.15s ease;
+}
+
+.land-nav a:hover {
+  color: var(--land-text);
+}
+
+.land-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.land-menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--land-hairline);
+  padding: 0.4rem 0.7rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--land-text);
+}
+
+/* ── 2. Hero Section ───────────────────────────────────────── */
+.land-hero {
+  padding-top: 96px;
+  padding-bottom: 64px;
+}
+
+.land-hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.land-hero-title {
+  font-size: 4rem; /* ~67px */
+  margin-bottom: 1.25rem;
+}
+
+.land-hero-body {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 540px;
+}
+
+.land-hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.land-trust-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--land-hairline);
+}
+
+.land-avatar-stack {
+  display: flex;
+}
+
+.land-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: var(--land-action);
+  color: var(--land-action-label);
+  border: 2px solid var(--land-bg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: -8px;
+}
+
+.land-trust-caption {
+  font-size: 0.88rem;
+  color: var(--land-muted);
+}
+
+.land-hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.land-stat-val {
+  display: block;
+  font-family: var(--land-font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--land-text);
+  line-height: 1.2;
+}
+
+.land-stat-lbl {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--land-muted);
+}
+
+/* ── Hero Browser Preview Frame ────────────────────────────── */
+.land-browser-frame {
+  background: var(--land-surface);
+  border: 1px solid var(--land-hairline);
+  box-shadow: 4px 6px 0px rgba(59, 42, 26, 0.08);
+}
+
+.land-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  background: #dbd0be;
+  border-bottom: 1px solid var(--land-hairline);
+}
+
+.land-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50% !important; /* Only browser dots retain circles */
+  background: #b5a995;
+}
+
+.land-browser-url {
+  margin-left: 10px;
+  font-size: 0.75rem;
+  color: var(--land-muted);
+  background: var(--land-surface);
+  padding: 2px 10px;
+  border: 1px solid var(--land-hairline);
+  width: 70%;
+}
+
+.land-browser-canvas {
+  padding: 24px;
+  background: #fbf7f0;
+}
+
+.land-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--land-hairline);
+}
+
+.land-preview-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--land-accent);
+}
+
+.land-preview-score {
+  font-size: 0.8rem;
+  color: var(--land-muted);
+}
+
+.land-preview-card {
+  background: var(--land-surface);
+  border: 1px solid var(--land-hairline);
+  padding: 18px;
+  margin-bottom: 1.25rem;
+}
+
+.land-preview-q-num {
+  font-size: 0.72rem;
+  color: var(--land-muted);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.land-preview-q-text {
+  font-family: var(--land-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--land-text);
+  margin-bottom: 1rem;
+}
+
+.land-preview-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.land-preview-opt {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 8px 12px;
+  background: #fbf7f0;
+  border: 1px solid var(--land-hairline);
+  font-size: 0.85rem;
+}
+
+.land-preview-opt.correct {
+  border-color: #27ae60;
+  background: #eafaf1;
+  font-weight: 600;
+}
+
+.opt-marker {
+  font-weight: 700;
+  color: var(--land-accent);
+}
+
+.land-preview-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+}
+
+.land-gen-badge {
+  color: var(--land-accent);
+  font-weight: 500;
+}
+
+.land-preview-cta {
+  font-weight: 600;
+  color: var(--land-action);
+}
+
+/* ── 3. Logo Cloud ─────────────────────────────────────────── */
+.land-logos {
+  padding: 56px 0;
+  border-top: 1px solid var(--land-hairline);
+  border-bottom: 1px solid var(--land-hairline);
+  background: var(--land-surface);
+  text-align: center;
+}
+
+.land-logos-caption {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--land-muted);
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.land-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.land-logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--land-text);
+  font-family: var(--land-font-display);
+  font-size: 0.95rem;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.land-logo-icon {
+  color: var(--land-accent);
+}
+
+/* ── 4. Features Section ───────────────────────────────────── */
+.land-features {
+  padding-top: 96px;
+  padding-bottom: 64px;
+}
+
+.land-section-heading {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 4rem auto;
+}
+
+.land-section-heading h2 {
+  font-size: 2.75rem;
+  margin-bottom: 1rem;
+}
+
+.land-feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  margin-bottom: 5rem;
+}
+
+.land-feature-row.reverse {
+  direction: rtl;
+}
+
+.land-feature-row.reverse > * {
+  direction: ltr;
+}
+
+.land-feature-text h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.land-feature-text p {
+  line-height: 1.7;
+}
+
+.land-feature-num {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: var(--land-accent);
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.land-inset-box {
+  background: var(--land-surface);
+  border: 1px solid var(--land-hairline);
+  padding: 24px;
+}
+
+.land-inset-header {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--land-accent);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--land-hairline);
+}
+
+.land-code-mock code {
+  display: block;
+  font-family: var(--land-font-body);
+  font-size: 0.82rem;
+  color: var(--land-text);
+  margin-bottom: 0.4rem;
+}
+
+.land-progress-bar {
+  height: 6px;
+  background: var(--land-hairline);
+  margin: 12px 0;
+}
+
+.land-progress-fill {
+  height: 100%;
+  background: var(--land-accent);
+}
+
+.land-tree-mock .tree-node {
+  font-family: var(--land-font-body);
+  font-size: 0.85rem;
+  padding: 6px 0;
+  color: var(--land-text);
+}
+
+.land-tree-mock .tree-node.active {
+  font-weight: 600;
+  color: var(--land-accent);
+}
+
+.land-tree-mock .tree-node.sub {
+  color: var(--land-muted);
+}
+
+.land-calendar-mock {
+  background: #fbf7f0;
+  border: 1px solid var(--land-hairline);
+  padding: 18px;
+}
+
+.cal-event {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.cal-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--land-accent);
+  margin-top: 6px;
+}
+
+.cal-event strong {
+  display: block;
+  font-family: var(--land-font-display);
+  font-size: 1rem;
+}
+
+.cal-event p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+.cal-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #27ae60;
+}
+
+/* ── 5. Process (3 Steps) ──────────────────────────────────── */
+.land-process {
+  padding-top: 96px;
+  padding-bottom: 64px;
+  background: var(--land-surface);
+  border-top: 1px solid var(--land-hairline);
+  border-bottom: 1px solid var(--land-hairline);
+}
+
+.land-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.land-step-card {
+  background: var(--land-bg);
+  border: 1px solid var(--land-hairline);
+  padding: 32px 24px;
+  position: relative;
+}
+
+.land-step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--land-action);
+  color: var(--land-action-label);
+  font-family: var(--land-font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.land-step-card h4 {
+  font-size: 1.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.land-step-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ── 6. Testimonials ───────────────────────────────────────── */
+.land-testimonials {
+  padding-top: 96px;
+  padding-bottom: 64px;
+}
+
+.land-quote-featured {
+  background: var(--land-surface);
+  border: 1px solid var(--land-hairline);
+  padding: 48px;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.land-quote-mark {
+  font-family: var(--land-font-display);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--land-accent);
+  margin-bottom: 1rem;
+}
+
+.land-quote-text {
+  font-family: var(--land-font-display);
+  font-size: 1.75rem;
+  line-height: 1.4;
+  color: var(--land-text);
+  margin: 0 0 2rem 0;
+  font-weight: 500;
+}
+
+.land-quote-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--land-action);
+  color: var(--land-action-label);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.author-avatar.sm {
+  width: 36px;
+  height: 36px;
+  font-size: 0.8rem;
+}
+
+.land-quote-author strong,
+.subquote-author strong {
+  display: block;
+  font-family: var(--land-font-display);
+  font-size: 1rem;
+}
+
+.land-quote-author span,
+.subquote-author span {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--land-muted);
+}
+
+.land-quotes-subgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.land-subquote-card {
+  background: var(--land-surface);
+  border: 1px solid var(--land-hairline);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.land-subquote-card p {
+  font-size: 1rem;
+  color: var(--land-text);
+  margin-bottom: 1.5rem;
+}
+
+.subquote-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* ── 7. Pricing Section ────────────────────────────────────── */
+.land-pricing {
+  padding-top: 96px;
+  padding-bottom: 64px;
+}
+
+.land-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.land-price-card {
+  background: var(--land-surface);
+  border: 1px solid var(--land-hairline);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.land-price-card.popular {
+  border: 2px solid var(--land-action);
+  background: #fbf7f0;
+}
+
+.plan-badge {
+  position: absolute;
+  top: -12px;
+  left: 28px;
+  background: var(--land-action);
+  color: var(--land-action-label);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 2px 10px;
+}
+
+.plan-name {
+  font-family: var(--land-font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.plan-price {
+  font-family: var(--land-font-display);
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.plan-price span {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--land-muted);
+}
+
+.plan-desc {
+  font-size: 0.88rem;
+  margin-bottom: 1.5rem;
+  min-height: 42px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--land-hairline);
+  padding-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.plan-features li {
+  font-size: 0.88rem;
+  color: var(--land-text);
+}
+
+/* ── 8. FAQ Section ────────────────────────────────────────── */
+.land-faq {
+  padding-top: 96px;
+  padding-bottom: 64px;
+  border-top: 1px solid var(--land-hairline);
+}
+
+.land-faq-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 4rem;
+}
+
+.land-faq-left h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.land-faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background: var(--land-surface);
+  border: 1px solid var(--land-hairline);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-family: var(--land-font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--land-text);
+}
+
+.faq-icon {
+  font-family: var(--land-font-body);
+  font-size: 1.25rem;
+  color: var(--land-accent);
+}
+
+.faq-answer {
+  padding: 0 1.5rem 1.25rem 1.5rem;
+  border-top: 1px solid var(--land-hairline);
+}
+
+.faq-answer p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  margin: 0.75rem 0 0 0;
+}
+
+/* ── 9. Closing Banner (Inverted Ground #141314) ───────────── */
+.land-closing {
+  background-color: var(--land-inverse-bg);
+  color: var(--land-inverse-text);
+  padding: 80px 0;
+}
+
+.land-closing-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.land-closing-text h2 {
+  color: var(--land-inverse-text);
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.land-closing-text p {
+  color: #a8a8a8;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.land-closing-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.land-btn-inverted-solid {
+  background-color: var(--land-inverse-text);
+  color: var(--land-inverse-bg) !important;
+  padding: 0.9rem 1.8rem;
+  font-family: var(--land-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--land-inverse-text);
+  cursor: pointer;
+}
+
+.land-btn-inverted-outline {
+  background-color: transparent;
+  color: var(--land-inverse-text) !important;
+  padding: 0.9rem 1.8rem;
+  font-family: var(--land-font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--land-inverse-text);
+  cursor: pointer;
+}
+
+/* ── 10. Footer ────────────────────────────────────────────── */
+.land-footer {
+  background-color: var(--land-bg);
+  padding-top: 80px;
+  padding-bottom: 40px;
+  border-top: 1px solid var(--land-hairline);
+}
+
+.land-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.footer-desc {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 380px;
+}
+
+.footer-version {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--land-accent);
+  background: var(--land-surface);
+  padding: 4px 8px;
+  border: 1px solid var(--land-hairline);
+}
+
+.footer-col h4 {
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-col a {
+  color: var(--land-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.15s ease;
+}
+
+.footer-col a:hover {
+  color: var(--land-text);
+  text-decoration: underline;
+}
+
+.land-footer-sub {
+  border-top: 1px solid var(--land-hairline);
+  padding-top: 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: var(--land-muted);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-sub-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-sub-links a {
+  color: var(--land-muted);
+  text-decoration: none;
+}
+
+.footer-sub-links a:hover {
+  color: var(--land-text);
+}
+
+/* ── Responsive Behavior ───────────────────────────────────── */
+@media (max-width: 1024px) {
+  .land-hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .land-hero-title {
+    font-size: 3.25rem;
+  }
+  .land-feature-row,
+  .land-feature-row.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+  .land-logos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .land-pricing-grid {
+    grid-template-columns: 1fr;
+  }
+  .land-faq-layout {
+    grid-template-columns: 1fr;
+  }
+  .land-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .land-hero {
+    padding-top: 64px;
+    padding-bottom: 48px;
+  }
+  .land-hero-title {
+    font-size: 2.75rem;
+  }
+  .land-hero-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .land-steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .land-quotes-subgrid {
+    grid-template-columns: 1fr;
+  }
+  .land-nav {
+    display: none;
+  }
+  .land-nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    width: 100%;
+    background: var(--land-bg);
+    border-bottom: 1px solid var(--land-hairline);
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+  .land-menu-toggle {
+    display: block;
+  }
+  .land-closing-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .land-footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
