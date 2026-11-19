@@ -52,10 +52,10 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// ── Start Server ────────────────────────────────────────────
-app.listen(PORT, () => {
+// ── Start Server (127.0.0.1 loopback avoids university firewall prompts) ─
+app.listen(PORT, '127.0.0.1', () => {
   console.log(`\n========================================`);
   console.log(`  StudySprint API Server`);
-  console.log(`  Running on http://localhost:${PORT}`);
+  console.log(`  Running on http://127.0.0.1:${PORT}`);
   console.log(`========================================\n`);
 });
