@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>IT342 Project Development 2 Completion Report - StudySprint</title>
+  <style>
+    @page {
+      size: letter;
+      margin: 20mm 18mm 20mm 18mm;
+    }
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.45;
+      color: #1a1a1a;
+      background: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 2px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .subtitle {
+      font-size: 12pt;
+      font-weight: 600;
+      color: #4b5563;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h2 {
+      font-size: 13pt;
+      font-weight: 700;
+      color: #1f2937;
+      border-bottom: 2px solid #374151;
+      padding-bottom: 4px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 11.5pt;
+      font-weight: 600;
+      color: #374151;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+    p, li {
+      margin-top: 4px;
+      margin-bottom: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px 0;
+      page-break-inside: avoid;
+      font-size: 10pt;
+    }
+    th, td {
+      border: 1px solid #9ca3af;
+      padding: 7px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #f3f4f6;
+      font-weight: 600;
+      color: #111827;
+    }
+    .table-info td:first-child {
+      font-weight: 600;
+      width: 25%;
+      background-color: #f9fafb;
+    }
+    .badge-complete {
+      display: inline-block;
+      padding: 2px 8px;
+      background-color: #def7ec;
+      color: #03543f;
+      font-weight: 600;
+      font-size: 8.5pt;
+      border: 1px solid #84e1bc;
+    }
+    .screenshot-card {
+      margin: 18px 0;
+      page-break-inside: avoid;
+      border: 1px solid #d1d5db;
+      padding: 8px;
+      background: #fafafa;
+    }
+    .screenshot-card img {
+      width: 100%;
+      max-height: 480px;
+      object-fit: contain;
+      display: block;
+      border: 1px solid #e5e7eb;
+    }
+    .screenshot-caption {
+      margin-top: 6px;
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #374151;
+      text-align: center;
+    }
+    .code {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9.5pt;
+      background-color: #f3f4f6;
+      padding: 1px 4px;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+    .declaration-box {
+      border: 2px solid #374151;
+      padding: 16px;
+      margin-top: 24px;
+      background-color: #f9fafb;
+      page-break-inside: avoid;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>IT342 – Systems Integration and Architecture 1</h1>
+  <div class="subtitle">Project Development 2 — Implementation / Completion Report</div>
+
+  <table class="table-info">
+    <tr>
+      <td>System Name</td>
+      <td><strong>StudySprint: An AI-Assisted Study Planner and Quiz Generator</strong></td>
+      <td>Student Name</td>
+      <td><strong>Antolijao, Ave Cyril G.</strong></td>
+    </tr>
+    <tr>
+      <td>Section</td>
+      <td><strong>IT342-G01</strong></td>
+      <td>Increment</td>
+      <td><strong>Project Development 2 – User Profile and Password Management</strong></td>
+    </tr>
+    <tr>
+      <td>GitHub Repository</td>
+      <td><a href="https://github.com/cyril333/studysprint">https://github.com/cyril333/studysprint</a></td>
+      <td>Date Submitted</td>
+      <td><strong>11/25/2026</strong></td>
+    </tr>
+  </table>
+
+  <h2>1. Project Overview</h2>
+  <p>
+    <strong>StudySprint</strong> is an AI-assisted web application engineered to enhance student academic productivity through automated note parsing, adaptive quiz generation, and personalized schedule tracking. The platform serves college and university students seeking structured study workflows and instructors/administrators managing student learning analytics.
+  </p>
+  <p>
+    <strong>Core feature for this increment:</strong> User Profile and Password Management (Vertical Slice).
+  </p>
+  <p>
+    <strong>Justification:</strong> Secure identity management, self-service credential recovery, and profile autonomy are critical prerequisites for safeguarding student academic records, personalized study schedules, and private quiz history prior to launching the note processing and AI modules.
+  </p>
+
+  <h2>2. Features Implemented in This Increment</h2>
+
+  <h3>2.1 Standard Features (from Project Development 1)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Feature</th>
+        <th style="width: 15%;">Status</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Account Registration</strong></td>
+        <td><span class="badge-complete">Complete</span></td>
+        <td>Real-time client and server validation; bcrypt password hashing (10 salt rounds); unique email & username enforcement; default student role.</td>
+      </tr>
+      <tr>
+        <td><strong>Login / Logout</strong></td>
+        <td><span class="badge-complete">Complete</span></td>
+        <td>Multi-identifier login (email or username); stateless JWT token generation (24h validity); account suspension checks; full logout state teardown.</td>
+      </tr>
+      <tr>
+        <td><strong>Role-Based User Dashboard</strong></td>
+        <td><span class="badge-complete">Complete</span></td>
+        <td>Dedicated dashboards for Student (<span class="code">/student/dashboard</span>) and Admin (<span class="code">/admin/dashboard</span>) with metrics and protected route guards.</td>
+      </tr>
+      <tr>
+        <td><strong>User Profile (view and edit)</strong></td>
+        <td><span class="badge-complete">Complete</span></td>
+        <td>Dedicated Profile page (<span class="code">/profile</span>) allowing authenticated users to view identity info and update Full Name, Username, and Email.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>2.2 Core Feature: User Profile and Password Management</h3>
+  <p>
+    <strong>Description:</strong> This increment introduces a cohesive security and profile management vertical slice. Authenticated users can view and edit their profile with automatic uniqueness validation, change their password after verifying their current credentials, and securely reset a forgotten password via time-expiring, single-use cryptographic tokens.
+  </p>
+
+  <h3>User Roles and Access</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 20%;">Role</th>
+        <th>What this role can do in the feature</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Student</strong></td>
+        <td>View and update their own personal profile; change their account password; initiate forgot password recovery; access student study analytics.</td>
+      </tr>
+      <tr>
+        <td><strong>Admin</strong></td>
+        <td>View and update their own profile and credentials; initiate password recovery; search and view all system users; suspend and activate user accounts.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>User Flow</h3>
+  <ol>
+    <li><strong>Profile Management Flow:</strong> Authenticated user clicks "Profile" in the top navbar &rarr; Views profile details and avatar initials &rarr; Modifies Full Name, Email, or Username &rarr; Clicks "Save Profile Changes" &rarr; Validates inputs and updates database and session.</li>
+    <li><strong>Change Password Flow:</strong> User switches to "Password & Security" tab on <span class="code">/profile</span> &rarr; Enters Current Password, New Password, and Confirm Password &rarr; System verifies current hash via bcrypt &rarr; New password validated (&ge;8 chars, matches confirmation, differs from current) &rarr; Database updated.</li>
+    <li><strong>Forgot Password Flow:</strong> User on login page clicks "Forgot password?" &rarr; Submits registered email or username &rarr; Backend generates a secure 64-character random token expiring in 30 minutes stored in <span class="code">password_resets</span> &rarr; User follows reset link &rarr; Submits new password &rarr; Token marked as used &rarr; User logs in with new password.</li>
+  </ol>
+
+  <div class="page-break"></div>
+
+  <h3>CRUD Operations</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Operation</th>
+        <th>Implemented?</th>
+        <th>Where in the UI</th>
+        <th>Who can do it</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Create</strong></td>
+        <td>Yes</td>
+        <td><span class="code">/forgot-password</span> ("Generate Reset Token" button)</td>
+        <td>Any registered student or admin</td>
+      </tr>
+      <tr>
+        <td><strong>Read</strong></td>
+        <td>Yes</td>
+        <td><span class="code">/profile</span> ("Profile Details" tab)</td>
+        <td>Authenticated user (reads own profile)</td>
+      </tr>
+      <tr>
+        <td><strong>Update</strong></td>
+        <td>Yes</td>
+        <td><span class="code">/profile</span> ("Save Profile" & "Update Password" buttons)</td>
+        <td>Authenticated user (updates own data)</td>
+      </tr>
+      <tr>
+        <td><strong>Delete / Invalidate</strong></td>
+        <td>Yes</td>
+        <td><span class="code">/reset-password</span> (Consumes and marks token as used)</td>
+        <td>Any user with valid reset token</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Database Models</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Model / Table</th>
+        <th>Key Fields</th>
+        <th>Relationships & Constraints</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="code">users</span></td>
+        <td><span class="code">id, fullName, email, username, password, role, status, createdAt, updatedAt</span></td>
+        <td>Primary Key: <span class="code">id</span>. Unique: <span class="code">email, username</span>. Trigger: auto-updates <span class="code">updatedAt</span>.</td>
+      </tr>
+      <tr>
+        <td><span class="code">password_resets</span></td>
+        <td><span class="code">id, userId, token, expiresAt, used, createdAt</span></td>
+        <td>Primary Key: <span class="code">id</span>. Foreign Key: <span class="code">userId &rarr; users(id) ON DELETE CASCADE</span>. Unique: <span class="code">token</span>.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Key Files</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Layer</th>
+        <th>File Path(s)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Database Configuration</strong></td>
+        <td><span class="code">server/config/database.js</span></td>
+      </tr>
+      <tr>
+        <td><strong>Backend Routes & API</strong></td>
+        <td><span class="code">server/routes/users.js</span>, <span class="code">server/routes/auth.js</span></td>
+      </tr>
+      <tr>
+        <td><strong>Authentication Middleware</strong></td>
+        <td><span class="code">server/middleware/auth.js</span></td>
+      </tr>
+      <tr>
+        <td><strong>Frontend Pages</strong></td>
+        <td><span class="code">client/src/pages/Profile.jsx</span>, <span class="code">client/src/pages/ForgotPassword.jsx</span>, <span class="code">client/src/pages/ResetPassword.jsx</span>, <span class="code">client/src/pages/Login.jsx</span></td>
+      </tr>
+      <tr>
+        <td><strong>Context & Routing</strong></td>
+        <td><span class="code">client/src/context/AuthContext.jsx</span>, <span class="code">client/src/App.jsx</span>, <span class="code">client/src/components/Navbar.jsx</span></td>
+      </tr>
+      <tr>
+        <td><strong>Verification Suite</strong></td>
+        <td><span class="code">server/test_increment2.js</span> (13-point automated integration test)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Validation and Business Rules</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 35%;">Rule</th>
+        <th>How it is enforced</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Password Minimum Length</strong></td>
+        <td>Enforced client-side (inline error message if &lt; 8 characters) and backend API validation (<span class="code">HTTP 400</span>).</td>
+      </tr>
+      <tr>
+        <td><strong>Password Confirmation Matching</strong></td>
+        <td>Real-time input validation in React forms and server-side equality verification before database submission.</td>
+      </tr>
+      <tr>
+        <td><strong>Current Password Verification</strong></td>
+        <td>Enforced via <span class="code">bcrypt.compareSync()</span> against stored hash before allowing password alteration (<span class="code">HTTP 401</span>).</td>
+      </tr>
+      <tr>
+        <td><strong>Password History Uniqueness</strong></td>
+        <td>Rejects password changes if new password matches existing password hash (<span class="code">HTTP 400</span>).</td>
+      </tr>
+      <tr>
+        <td><strong>Profile Uniqueness Guarantee</strong></td>
+        <td>Server verifies that updated username or email is not in use by any other user account (<span class="code">HTTP 409 Conflict</span>).</td>
+      </tr>
+      <tr>
+        <td><strong>Expiring, Single-Use Reset Token</strong></td>
+        <td>Cryptographically secure random 32-byte hex token; expires after 30 minutes; immediately marked <span class="code">used = 1</span> upon reset.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Branches and Pull Requests</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Branch</th>
+        <th>Merged Into</th>
+        <th>Pull Request Link</th>
+        <th>What it contains</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="code">increment-2</span></td>
+        <td><span class="code">main</span></td>
+        <td><a href="https://github.com/cyril333/studysprint/pull/2">Pull Request #2 (increment-2 &rarr; main)</a></td>
+        <td>Full-stack User Profile view/edit, Change Password, and Password Reset vertical slice with automated tests and PDF report.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-break"></div>
+
+  <h2>Screenshots of Implemented Features</h2>
+
+  <div class="screenshot-card">
+    <img src="screenshots/01_login_page.png" alt="Login Page">
+    <div class="screenshot-caption">Figure 1: Login Page with "Forgot password?" Link and Sharp 0px Geometry Aesthetic</div>
+  </div>
+
+  <div class="screenshot-card">
+    <img src="screenshots/02_forgot_password_token_generated.png" alt="Forgot Password Request">
+    <div class="screenshot-caption">Figure 2: Forgot Password flow generating a 30-minute single-use cryptographic token</div>
+  </div>
+
+  <div class="screenshot-card">
+    <img src="screenshots/03_reset_password_view.png" alt="Set New Password">
+    <div class="screenshot-caption">Figure 3: Set New Password interface with security token verification and password visibility toggles</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <div class="screenshot-card">
+    <img src="screenshots/04_user_profile_details.png" alt="User Profile Details">
+    <div class="screenshot-caption">Figure 4: User Profile Management view showing monogram avatar, identity metadata, and editable inputs</div>
+  </div>
+
+  <div class="screenshot-card">
+    <img src="screenshots/05_profile_updated_success.png" alt="Profile Update Success">
+    <div class="screenshot-caption">Figure 5: Live Profile Update demonstrating instant database synchronization and alert confirmation</div>
+  </div>
+
+  <div class="screenshot-card">
+    <img src="screenshots/06_password_validation_error.png" alt="Validation Error">
+    <div class="screenshot-caption">Figure 6: Validation Error handling displaying mismatched password feedback under Password & Security tab</div>
+  </div>
+
+  <div class="screenshot-card">
+    <img src="screenshots/07_password_change_success.png" alt="Password Change Success">
+    <div class="screenshot-caption">Figure 7: Successful Password Change with current credential verification and confirmation message</div>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>3. Remaining Tasks</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 5%;">No.</th>
+        <th style="width: 25%;">Task</th>
+        <th>Description</th>
+        <th style="width: 15%;">Priority</th>
+        <th style="width: 20%;">Target Increment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>Notes & Topics Management</strong></td>
+        <td>Implement tables and UI for organizing subjects, topics, and digital lecture notes (FR-002).</td>
+        <td>High</td>
+        <td>Project Development 3</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>AI Quiz Generation</strong></td>
+        <td>Integrate LLM API (Gemini / Claude) to parse text notes and generate 10 multiple-choice questions within 30s (FR-003).</td>
+        <td>High</td>
+        <td>Project Development 3</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>Interactive Quiz & Scoring</strong></td>
+        <td>Build interactive timed quiz view with automatic grading and student performance history (FR-004).</td>
+        <td>Medium</td>
+        <td>Project Development 4</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Cloud PostgreSQL Migration</strong></td>
+        <td>Connect backend to Supabase / PostgreSQL for multi-region cloud deployment on Render.</td>
+        <td>Low</td>
+        <td>Final Deployment</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>4. Outstanding Issues</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 12%;">Issue ID</th>
+        <th style="width: 28%;">Description</th>
+        <th style="width: 28%;">Steps to Reproduce</th>
+        <th style="width: 14%;">Severity</th>
+        <th style="width: 18%;">Status / Workaround</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5" style="text-align: center; color: #4b5563; padding: 12px;">
+          <em>No known issues. All 13 automated integration tests and manual end-to-end user flows pass successfully.</em>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5. Test Accounts</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Role</th>
+        <th style="width: 40%;">Username / Email</th>
+        <th style="width: 35%;">Password</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>System Administrator</strong></td>
+        <td><span class="code">admin</span> &nbsp;|&nbsp; <span class="code">admin@studysprint.com</span></td>
+        <td><span class="code">Admin@123</span></td>
+      </tr>
+      <tr>
+        <td><strong>Student</strong></td>
+        <td><span class="code">student1</span> &nbsp;|&nbsp; <span class="code">student@studysprint.com</span></td>
+        <td><span class="code">Student@123</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="declaration-box">
+    <h2>6. Declaration</h2>
+    <p>
+      I declare that the work described in this report is my own, that it is accurately reflected in my GitHub repository, and that all remaining tasks and known issues are disclosed above.
+    </p>
+    <div style="margin-top: 20px; display: flex; justify-content: space-between;">
+      <div><strong>Student Name:</strong> Ave Cyril G. Antolijao</div>
+      <div><strong>Date:</strong> November 25, 2026</div>
+    </div>
+  </div>
+
+</body>
+</html>

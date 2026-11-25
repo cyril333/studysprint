@@ -10,6 +10,31 @@ A full-stack web application designed to help students manage study sessions mor
 
 ---
 
+## Features (Project Increment 2 – User Profile & Password Management)
+
+### User Profile Management
+- View authenticated profile details (monogram initials, role, account status, member since date)
+- Edit Full Name, Username, and Email Address with instant frontend and database synchronization
+- Strict input validation and duplicate prevention (email & username uniqueness)
+- Protected access preventing unauthorized modifications to other users' profiles
+
+### Change Password
+- Authenticated credential update located in Profile > Password & Security
+- Mandatory verification of current password hash using bcrypt
+- Enforced 8+ character length, confirmation matching, and prevention of reusing current password
+
+### Reset Password (Forgot Password)
+- "Forgot password?" recovery link directly on login screen
+- Single-use, expiring (30 minutes) cryptographic token generation
+- Token verification and reset password view for effortless credential recovery
+- Single-use invalidation immediately upon reset completion to prevent replay attacks
+
+### Automated Testing & Documentation
+- 13-point automated integration test suite (`npm test` in `server/`)
+- Accomplished Increment 2 Completion Report PDF in `docs/Increment-2-Completion-Report.pdf`
+
+---
+
 ## Features (Project Increment 1)
 
 ### User Account Creation
@@ -32,6 +57,31 @@ A full-stack web application designed to help students manage study sessions mor
 - **Admin Dashboard**: System overview with total/active/suspended user stats, recent registrations table, user management link
 - **Admin User Management**: View all users, search/filter, suspend/activate accounts
 - Frontend & backend RBAC enforcement
+
+---
+
+## Features (Project Increment 2)
+
+### User Profile Management
+- Authenticated profile overview and edit screen (`/profile`)
+- Update Full Name, Email, Username, and Bio with inline and server-side validation
+- Prevention of duplicate email and username collisions across accounts
+- Ownership-based authorization (users can only modify their own profile data)
+- Instant client state synchronization across navigation headers and user monograms
+
+### Change Password
+- Authenticated password modification module inside `/profile`
+- Required verification of current password hash using `bcrypt`
+- Validation enforcing 8+ characters, match confirmation, and new password differentiation
+- Secure password hashing and instant invalidation of previous password
+
+### Reset Password (Forgot Password)
+- "Forgot password?" recovery link on login screen
+- Identity verification via registered email or username (`/forgot-password`)
+- Single-use, 30-minute expiring cryptographically secure token generation in `password_resets` table
+- Token verification endpoint (`/api/auth/verify-reset-token/:token`)
+- Dedicated reset interface (`/reset-password?token=...`) with real-time validation
+- Single-use token consumption (`used = 1`) preventing token replay attacks
 
 ---
 

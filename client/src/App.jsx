@@ -6,6 +6,9 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import Profile from './pages/Profile';
 import Landing from './pages/Landing';
 import StudentDashboard from './pages/StudentDashboard';
 import AdminDashboard from './pages/AdminDashboard';
@@ -34,6 +37,18 @@ function AppRoutes() {
       {/* Public Auth Routes */}
       <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
       <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+      <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
+      <Route path="/reset-password" element={<PublicRoute><ResetPassword /></PublicRoute>} />
+
+      {/* Shared Authenticated Routes */}
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute roles={['student', 'admin']}>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
 
       {/* Student Routes */}
       <Route
@@ -73,7 +88,6 @@ function AppRoutes() {
       />
 
       {/* Default redirect */}
-      <Route path="/" element={<Navigate to="/login" replace />} />
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   );

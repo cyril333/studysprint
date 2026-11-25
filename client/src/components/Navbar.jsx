@@ -36,6 +36,9 @@ export default function Navbar() {
             <Link to="/admin/users" className="nav-link">
               <FiUsers size={16} /> Users
             </Link>
+            <Link to="/profile" className="nav-link">
+              <FiUser size={16} /> Profile
+            </Link>
           </>
         ) : (
           <>
@@ -44,6 +47,9 @@ export default function Navbar() {
             </Link>
             <Link to="/student/notes" className="nav-link">
               <FiBookOpen size={16} /> Notes
+            </Link>
+            <Link to="/profile" className="nav-link">
+              <FiUser size={16} /> Profile
             </Link>
           </>
         )}

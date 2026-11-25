@@ -52,10 +52,22 @@ export function AuthProvider({ children }) {
     setUser(null);
   };
 
+  const updateUser = (updatedData, newToken) => {
+    if (newToken) {
+      localStorage.setItem('token', newToken);
+      setToken(newToken);
+    }
+    setUser((prev) => {
+      const merged = { ...prev, ...updatedData };
+      localStorage.setItem('user', JSON.stringify(merged));
+      return merged;
+    });
+  };
+
   const isAuthenticated = !!token && !!user;
 
   return (
-    <AuthContext.Provider value={{ user, token, loading, login, register, logout, isAuthenticated }}>
+    <AuthContext.Provider value={{ user, token, loading, login, register, logout, updateUser, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

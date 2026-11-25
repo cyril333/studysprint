@@ -12,6 +12,7 @@ const path = require('path');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const dashboardRoutes = require('./routes/dashboard');
+const profileRoutes = require('./routes/profile');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -38,17 +39,20 @@ app.use('/api/auth', authLimiter);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/profile', profileRoutes);
 
 // ── Health Check ────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'StudySprint API is running.' });
 });
 
-// ── Serve React Frontend in Production ──────────────────────
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '..', 'client', 'dist')));
+// ── Serve React Frontend (when built) ──────────────────────
+const clientDist = path.join(__dirname, '..', 'client', 'dist');
+const fs = require('fs');
+if (fs.existsSync(clientDist)) {
+  app.use(express.static(clientDist));
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'client', 'dist', 'index.html'));
+    res.sendFile(path.join(clientDist, 'index.html'));
   });
 }
 
