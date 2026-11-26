@@ -64,30 +64,40 @@ This file preserves the full architectural context, design decisions, and state 
 
 ---
 
-## 4. Tech Stack Architecture
+## 4. Completed in Increment 3 (Core System Features)
+- **Subject, Topic & Notes Management (`FR-002`):**
+  - Hierarchical workspace (`/student/notes`) with full CRUD for `subjects`, `topics`, and `notes`.
+  - Supports pasting notes OR uploading `.pdf` (parsed via `multer` + `pdf-parse` on `POST /api/subjects/extract-pdf`), `.txt`, `.md`, and `.csv` files.
+- **AI Quiz Generation & Draft Review (`FR-003`):**
+  - `server/utils/quizGenerator.js` generates 10-question MCQs + study summary in `<30s`.
+  - Uses Google Gemini (`GEMINI_API_KEY` in `server/.env`) when configured, with an automatic deterministic NLP Concept & Cloze Engine fallback.
+  - Students can edit generated quiz titles, summaries, prompts, options, and correct answers before saving (`quizzes` + `questions`).
+- **Quiz Taking & Auto-Scoring (`FR-004`):**
+  - Interactive runner (`/student/quizzes/:id`), automatic grading (`POST /api/quizzes/:id/attempt`), immediate feedback/explanations, and `quiz_attempts` history.
+- **Study Session Scheduling (`FR-005`), Progress Analytics (`FR-008`), Quiz Sharing (`FR-009`) & Admin Moderation (`FR-010`):**
+  - `/student/schedule` (`study_sessions`), live SQLite analytics on `/student/dashboard`, shareable quiz links (`/shared-quiz/:shareToken`), and `/admin/moderation` queue for flagged quizzes.
+
+---
+
+## 5. Tech Stack Architecture
 - **Frontend:** React 18 (Vite), React Router DOM, Axios, Custom CSS Tokens.
-- **Backend:** Node.js + Express.js REST API.
+- **Backend:** Node.js + Express.js REST API (`multer`, `pdf-parse@1.1.1`).
 - **Database:** SQLite (`better-sqlite3`), database file at `server/studysprint.db`.
-  - Tables: `users`, `password_resets`.
+  - Tables: `users`, `password_resets`, `subjects`, `topics`, `notes`, `quizzes`, `questions`, `quiz_attempts`, `study_sessions`.
 - **Security:** `bcryptjs` for password hashing, `jsonwebtoken` for auth tokens, `crypto` for cryptographic tokens.
 - **Host Binding:** `127.0.0.1` (loopback avoids campus firewall restrictions).
 
 ---
 
-## 5. Default Seed Accounts
+## 6. Default Seed Accounts (`node server/seed.js`)
 | Role | Email / Login | Username | Password |
 |---|---|---|---|
 | Admin | `admin@studysprint.com` | `admin` | `Admin@123` |
-| Student | `student@studysprint.com` | `student1` | `Student@123` |
+| Student | `student@studysprint.com` | `student` | `Student@123` |
 
 ---
 
-## 6. Upcoming Next Steps for Increment 3
-1. **Feature 2 (FR-002): Subject, Topic, and Notes Management**
-   - Create tables: `subjects`, `topics`, `notes`.
-   - UI to organize subjects and paste/upload digital text notes.
-2. **Feature 3 (FR-003): AI Quiz Generation**
-   - Integration with external LLM API (Gemini / Claude API).
-   - Generate 10 multiple-choice questions from notes within 30 seconds.
-3. **Feature 4 (FR-004): Quiz Taking & Automated Scoring**
-   - Interactive quiz interface with timer, scoring, and history attempts table.
+## 7. Next Steps When Resuming on Laptop
+1. Run `git pull origin main` (or `increment-3`), then `npm install` in both `server/` and `client/`, and `node server/seed.js`.
+2. Optional: Add `GEMINI_API_KEY=your_key` to `server/.env` to switch quiz generation from the built-in NLP engine to live Gemini AI.
+3. Optional Final Deployment tasks: Google OAuth 2.0 & Calendar Sync (`FR-001`, `FR-006`), FCM Push Reminders (`FR-007`), and Cloud PostgreSQL/Supabase + Render hosting.
