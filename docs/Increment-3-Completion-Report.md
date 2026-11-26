@@ -29,7 +29,7 @@
 ### 2.2 Core System Features (Mandatory — Must Have)
 | Feature | SRS ID | Status | Implementation Summary |
 |---|---|---|---|
-| **Subject, Topic & Notes Management** | `FR-002` | **Complete** | Hierarchical workspace (`/student/notes`) supporting full CRUD for Subjects, Sub-topics, and digital text/file (`.txt`/`.md`) Notes stored under the user's profile. |
+| **Subject, Topic & Notes Management** | `FR-002` | **Complete** | Hierarchical workspace (`/student/notes`) supporting full CRUD for Subjects, Sub-topics, and digital text/file (`.pdf`/`.txt`/`.md`) Notes stored under the user's profile. |
 | **AI Quiz Generation & Draft Review** | `FR-003` | **Complete** | Generates 10-question MCQs and study summaries from note content in under 30 seconds (`Gemini LLM API` when configured + built-in deterministic NLP Concept & Cloze Engine). Students can edit prompts, options, and answers before saving. |
 | **Interactive Quiz Taking & Auto-Scoring** | `FR-004` | **Complete** | Interactive quiz runner (`/student/quizzes/:id`) with automatic grading, immediate per-question feedback/explanations, and persistent attempt history (`quiz_attempts`). |
 | **Admin Content Moderation** | `FR-010` | **Complete** | Dedicated moderation queue (`/admin/moderation`) where admins inspect shared and flagged quizzes, dismiss false flags, or permanently delete inappropriate content. |

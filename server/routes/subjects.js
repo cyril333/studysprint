@@ -2,13 +2,54 @@
 // StudySprint - Subject, Topic & Notes Management (FR-002)
 // ============================================================
 const express = require('express');
+const multer = require('multer');
+const pdfParse = require('pdf-parse');
 const db = require('../config/database');
 const { authenticate } = require('../middleware/auth');
 
 const router = express.Router();
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 15 * 1024 * 1024 } // 15MB max
+});
 
 // All routes require authentication
 router.use(authenticate);
+
+// ── POST /api/subjects/extract-pdf ──────────────────────────
+// Extracts text content from an uploaded PDF file.
+router.post('/extract-pdf', upload.single('file'), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: 'No PDF file uploaded.' });
+    }
+    if (req.file.mimetype !== 'application/pdf' && !req.file.originalname.toLowerCase().endsWith('.pdf')) {
+      return res.status(400).json({ message: 'Please upload a valid .pdf file.' });
+    }
+
+    const parsed = await pdfParse(req.file.buffer);
+    const extractedText = (parsed.text || '')
+      .replace(/\r\n/g, '\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .trim();
+
+    if (!extractedText || extractedText.length < 20) {
+      return res.status(400).json({
+        message: 'Could not extract readable text from this PDF (it may be scanned images only).'
+      });
+    }
+
+    res.json({
+      message: `Extracted ${parsed.numpages} pages from PDF.`,
+      pages: parsed.numpages,
+      title: req.file.originalname.replace(/\.pdf$/i, ''),
+      content: extractedText
+    });
+  } catch (error) {
+    console.error('[Extract PDF Error]', error);
+    res.status(500).json({ message: 'Failed to parse PDF file.' });
+  }
+});
 
 // ── GET /api/subjects ───────────────────────────────────────
 // Lists all subjects for the current user along with their topics and notes.

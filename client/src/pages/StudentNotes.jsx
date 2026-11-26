@@ -30,6 +30,7 @@ export default function StudentNotes() {
   // Note form
   const [noteForm, setNoteForm] = useState({ id: null, title: '', content: '' });
   const [showNoteForm, setShowNoteForm] = useState(false);
+  const [extractingPdf, setExtractingPdf] = useState(false);
 
   // AI Quiz Draft Review (FR-003)
   const [generatingNoteId, setGeneratingNoteId] = useState(null);
@@ -127,10 +128,34 @@ export default function StudentNotes() {
     }
   };
 
-  // ── Note CRUD & File Upload ───────────────────────────────
-  const handleFileUpload = (e) => {
+  // ── Note CRUD & File Upload (.pdf, .txt, .md, .csv) ───────
+  const handleFileUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    if (file.type === 'application/pdf' || file.name.toLowerCase().endsWith('.pdf')) {
+      setExtractingPdf(true);
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        const res = await api.post('/subjects/extract-pdf', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        setNoteForm((prev) => ({
+          ...prev,
+          title: prev.title || res.data.title,
+          content: res.data.content
+        }));
+        showAlert('success', res.data.message);
+      } catch (err) {
+        showAlert('error', err.response?.data?.message || 'Failed to extract text from PDF.');
+      } finally {
+        setExtractingPdf(false);
+        e.target.value = '';
+      }
+      return;
+    }
+
     const reader = new FileReader();
     reader.onload = (evt) => {
       const text = evt.target.result;
@@ -141,6 +166,7 @@ export default function StudentNotes() {
       }));
     };
     reader.readAsText(file);
+    e.target.value = '';
   };
 
   const handleSaveNote = async (e) => {
@@ -473,8 +499,8 @@ export default function StudentNotes() {
                       <div className="section-header mb-3">
                         <h3>{noteForm.id ? 'Edit Note' : 'Paste or Upload Digital Note'}</h3>
                         <label className="btn-secondary btn-file-upload">
-                          <FiUpload size={14} /> Upload .txt / .md
-                          <input type="file" accept=".txt,.md,.csv" onChange={handleFileUpload} hidden />
+                          <FiUpload size={14} /> {extractingPdf ? 'Extracting PDF...' : 'Upload .pdf / .txt / .md'}
+                          <input type="file" accept=".pdf,.txt,.md,.csv" onChange={handleFileUpload} disabled={extractingPdf} hidden />
                         </label>
                       </div>
                       <div className="form-group">
