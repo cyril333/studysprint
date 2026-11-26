@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node index.js",
-    "test": "node test_increment2.js"
+    "test": "node test_increment3.js",
+    "test:inc2": "node test_increment2.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

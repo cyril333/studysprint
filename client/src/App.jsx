@@ -11,8 +11,13 @@ import ResetPassword from './pages/ResetPassword';
 import Profile from './pages/Profile';
 import Landing from './pages/Landing';
 import StudentDashboard from './pages/StudentDashboard';
+import StudentNotes from './pages/StudentNotes';
+import StudentQuizzes from './pages/StudentQuizzes';
+import QuizRunner from './pages/QuizRunner';
+import StudentSchedule from './pages/StudentSchedule';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminUsers from './pages/AdminUsers';
+import AdminModeration from './pages/AdminModeration';
 import './App.css';
 
 // Redirect authenticated users away from login/register
@@ -59,12 +64,45 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       />
-      {/* Placeholder student routes for nav links */}
       <Route
         path="/student/notes"
         element={
           <ProtectedRoute roles={['student']}>
-            <StudentDashboard />
+            <StudentNotes />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/student/quizzes"
+        element={
+          <ProtectedRoute roles={['student']}>
+            <StudentQuizzes />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/student/quizzes/:id"
+        element={
+          <ProtectedRoute roles={['student']}>
+            <QuizRunner />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/student/schedule"
+        element={
+          <ProtectedRoute roles={['student']}>
+            <StudentSchedule />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Shared Quiz Route (any authenticated user) */}
+      <Route
+        path="/shared-quiz/:shareToken"
+        element={
+          <ProtectedRoute roles={['student', 'admin']}>
+            <QuizRunner />
           </ProtectedRoute>
         }
       />
@@ -83,6 +121,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute roles={['admin']}>
             <AdminUsers />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/moderation"
+        element={
+          <ProtectedRoute roles={['admin']}>
+            <AdminModeration />
           </ProtectedRoute>
         }
       />

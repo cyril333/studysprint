@@ -13,6 +13,9 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const dashboardRoutes = require('./routes/dashboard');
 const profileRoutes = require('./routes/profile');
+const subjectRoutes = require('./routes/subjects');
+const quizRoutes = require('./routes/quizzes');
+const sessionRoutes = require('./routes/sessions');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -40,6 +43,15 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 app.use('/api/profile', profileRoutes);
+app.use('/api/subjects', subjectRoutes);
+app.use('/api/quizzes', quizRoutes);
+app.use('/api/sessions', sessionRoutes);
+app.use('/api/subjects', subjectRoutes);
+app.use('/api/quizzes', quizRoutes);
+app.use('/api/sessions', sessionRoutes);
+app.use('/api/subjects', subjectRoutes);
+app.use('/api/quizzes', quizRoutes);
+app.use('/api/sessions', sessionRoutes);
 
 // ── Health Check ────────────────────────────────────────────
 app.get('/api/health', (req, res) => {

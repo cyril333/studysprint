@@ -3,7 +3,7 @@
 // ============================================================
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FiLogOut, FiUser, FiHome, FiUsers, FiBookOpen, FiLayout } from 'react-icons/fi';
+import { FiLogOut, FiUser, FiHome, FiUsers, FiBookOpen, FiLayout, FiCheckSquare, FiCalendar, FiShield } from 'react-icons/fi';
 
 export default function Navbar() {
   const { user, logout, isAuthenticated } = useAuth();
@@ -36,6 +36,9 @@ export default function Navbar() {
             <Link to="/admin/users" className="nav-link">
               <FiUsers size={16} /> Users
             </Link>
+            <Link to="/admin/moderation" className="nav-link">
+              <FiShield size={16} /> Moderation
+            </Link>
             <Link to="/profile" className="nav-link">
               <FiUser size={16} /> Profile
             </Link>
@@ -47,6 +50,12 @@ export default function Navbar() {
             </Link>
             <Link to="/student/notes" className="nav-link">
               <FiBookOpen size={16} /> Notes
+            </Link>
+            <Link to="/student/quizzes" className="nav-link">
+              <FiCheckSquare size={16} /> Quizzes
+            </Link>
+            <Link to="/student/schedule" className="nav-link">
+              <FiCalendar size={16} /> Schedule
             </Link>
             <Link to="/profile" className="nav-link">
               <FiUser size={16} /> Profile

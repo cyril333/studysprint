@@ -40,6 +40,94 @@ db.exec(`
   BEGIN
     UPDATE users SET updatedAt = CURRENT_TIMESTAMP WHERE id = OLD.id;
   END;
+
+  -- ── Increment 3: Core StudySprint Tables ──────────────────
+  CREATE TABLE IF NOT EXISTS subjects (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId      INTEGER NOT NULL,
+    name        TEXT    NOT NULL,
+    code        TEXT    DEFAULT '',
+    description TEXT    DEFAULT '',
+    createdAt   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
+  );
+
+  CREATE TABLE IF NOT EXISTS topics (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    subjectId   INTEGER NOT NULL,
+    userId      INTEGER NOT NULL,
+    name        TEXT    NOT NULL,
+    createdAt   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (subjectId) REFERENCES subjects(id) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
+  );
+
+  CREATE TABLE IF NOT EXISTS notes (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    topicId     INTEGER NOT NULL,
+    userId      INTEGER NOT NULL,
+    title       TEXT    NOT NULL,
+    content     TEXT    NOT NULL,
+    createdAt   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updatedAt   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (topicId) REFERENCES topics(id) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
+  );
+
+  CREATE TABLE IF NOT EXISTS quizzes (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    noteId      INTEGER NOT NULL,
+    userId      INTEGER NOT NULL,
+    title       TEXT    NOT NULL,
+    summary     TEXT    DEFAULT '',
+    shareToken  TEXT    UNIQUE,
+    isShared    INTEGER NOT NULL DEFAULT 0,
+    isFlagged   INTEGER NOT NULL DEFAULT 0,
+    flagReason  TEXT    DEFAULT '',
+    createdAt   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (noteId) REFERENCES notes(id) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
+  );
+
+  CREATE TABLE IF NOT EXISTS questions (
+    id           INTEGER PRIMARY KEY AUTOINCREMENT,
+    quizId       INTEGER NOT NULL,
+    prompt       TEXT    NOT NULL,
+    options      TEXT    NOT NULL,
+    correctIndex INTEGER NOT NULL,
+    explanation  TEXT    DEFAULT '',
+    FOREIGN KEY (quizId) REFERENCES quizzes(id) ON DELETE CASCADE
+  );
+
+  CREATE TABLE IF NOT EXISTS quiz_attempts (
+    id             INTEGER PRIMARY KEY AUTOINCREMENT,
+    quizId         INTEGER NOT NULL,
+    userId         INTEGER NOT NULL,
+    score          INTEGER NOT NULL,
+    totalQuestions INTEGER NOT NULL,
+    percentage     REAL    NOT NULL,
+    answers        TEXT    NOT NULL,
+    completedAt    DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (quizId) REFERENCES quizzes(id) ON DELETE CASCADE,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
+  );
+
+  CREATE TABLE IF NOT EXISTS study_sessions (
+    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId          INTEGER NOT NULL,
+    subjectId       INTEGER,
+    topicId         INTEGER,
+    title           TEXT    NOT NULL,
+    scheduledAt     DATETIME NOT NULL,
+    durationMinutes INTEGER NOT NULL DEFAULT 45,
+    status          TEXT    NOT NULL DEFAULT 'planned',
+    createdAt       DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (subjectId) REFERENCES subjects(id) ON DELETE SET NULL,
+    FOREIGN KEY (topicId) REFERENCES topics(id) ON DELETE SET NULL
+  );
 `);
 
 // Safely ensure bio column exists on users table
