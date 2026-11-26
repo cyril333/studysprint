@@ -231,4 +231,59 @@ router.patch('/:id/status', authorize('admin'), (req, res) => {
   }
 });
 
+// ── GET /api/users/moderation ───────────────────────────────
+// Lists all shared and flagged quizzes for Admin Content Moderation (FR-010).
+router.get('/moderation', authorize('admin'), (req, res) => {
+  try {
+    const quizzes = db.prepare(`
+      SELECT q.id, q.title, q.summary, q.shareToken, q.isShared, q.isFlagged, q.flagReason, q.createdAt,
+             u.id as authorId, u.fullName as authorName, u.username as authorUsername, u.status as authorStatus,
+             (SELECT COUNT(*) FROM questions WHERE quizId = q.id) as questionCount
+      FROM quizzes q
+      JOIN users u ON q.userId = u.id
+      WHERE q.isShared = 1 OR q.isFlagged = 1
+      ORDER BY q.isFlagged DESC, q.createdAt DESC
+    `).all();
+
+    res.json({ quizzes });
+  } catch (error) {
+    console.error('[Moderation List Error]', error);
+    res.status(500).json({ message: 'Failed to load moderation queue.' });
+  }
+});
+
+// ── PATCH /api/users/moderation/:quizId/clear ───────────────
+// Dismisses a flag on a shared quiz (admin only).
+router.patch('/moderation/:quizId/clear', authorize('admin'), (req, res) => {
+  try {
+    const existing = db.prepare('SELECT id FROM quizzes WHERE id = ?').get(req.params.quizId);
+    if (!existing) {
+      return res.status(404).json({ message: 'Quiz not found.' });
+    }
+
+    db.prepare("UPDATE quizzes SET isFlagged = 0, flagReason = '' WHERE id = ?").run(req.params.quizId);
+    res.json({ message: 'Quiz flag dismissed.' });
+  } catch (error) {
+    console.error('[Clear Flag Error]', error);
+    res.status(500).json({ message: 'Failed to dismiss flag.' });
+  }
+});
+
+// ── DELETE /api/users/moderation/:quizId ────────────────────
+// Removes an inappropriate shared quiz (admin only, FR-010).
+router.delete('/moderation/:quizId', authorize('admin'), (req, res) => {
+  try {
+    const existing = db.prepare('SELECT id FROM quizzes WHERE id = ?').get(req.params.quizId);
+    if (!existing) {
+      return res.status(404).json({ message: 'Quiz not found.' });
+    }
+
+    db.prepare('DELETE FROM quizzes WHERE id = ?').run(req.params.quizId);
+    res.json({ message: 'Inappropriate quiz removed by administrator.' });
+  } catch (error) {
+    console.error('[Remove Quiz Error]', error);
+    res.status(500).json({ message: 'Failed to remove quiz.' });
+  }
+});
+
 module.exports = router;

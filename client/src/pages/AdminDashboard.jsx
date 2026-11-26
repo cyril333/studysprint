@@ -83,6 +83,13 @@ export default function AdminDashboard() {
               <p>Students</p>
             </div>
           </div>
+          <Link to="/admin/moderation" className="stat-card stat-orange" style={{ textDecoration: 'none' }}>
+            <div className="stat-icon"><FiActivity size={24} /></div>
+            <div className="stat-info">
+              <h3>{stats.flaggedQuizzes || 0}</h3>
+              <p>Flagged Quizzes</p>
+            </div>
+          </Link>
         </div>
 
         {/* Recent Users Table */}
